@@ -54,31 +54,6 @@
     <div class="ground"></div>
     <div class="ground-line"></div>
 
-    <!-- ═══════ SECTION LABELS ═══════ -->
-    <div class="section-label" style="left: 1500px">
-      <span class="sl-title">Origins</span>
-      <span class="sl-sub">Curiosity turned into code</span>
-    </div>
-    <div class="section-label" style="left: 3450px">
-      <span class="sl-title">Corporate Years</span>
-      <span class="sl-sub">Learning to build at scale</span>
-    </div>
-    <div class="section-label" style="left: 5550px">
-      <span class="sl-title">Founder Arc</span>
-      <span class="sl-sub">Building, breaking, learning</span>
-    </div>
-    <div class="section-label" style="left: 7300px">
-      <span class="sl-title">Now</span>
-      <span class="sl-sub">Everything connects here</span>
-    </div>
-    <div class="section-label" style="left: 9200px">
-      <span class="sl-title">Published Author</span>
-      <span class="sl-sub">Oh, he also wrote a book</span>
-    </div>
-    <div class="section-label" style="left: 9850px">
-      <span class="sl-title">Beyond the Code</span>
-      <span class="sl-sub">The human behind the data</span>
-    </div>
 
     <!-- ═══════ TIMELINE RAIL ═══════ -->
     <div class="timeline-rail">
@@ -435,6 +410,34 @@
   <div class="character" id="character">
     <div class="char-shadow"></div>
     <img src="/assets/avatar-school.png" alt="Ayush Saxena" class="char-img" id="charImg" />
+  </div>
+
+  <!-- Section labels — fixed overlays, centered on screen -->
+  <div class="section-labels" id="sectionLabels">
+    <div class="section-label" data-range="0.08,0.22">
+      <span class="sl-title">Origins</span>
+      <span class="sl-sub">Curiosity turned into code</span>
+    </div>
+    <div class="section-label" data-range="0.25,0.40">
+      <span class="sl-title">Corporate Years</span>
+      <span class="sl-sub">Learning to build at scale</span>
+    </div>
+    <div class="section-label" data-range="0.43,0.58">
+      <span class="sl-title">Founder Arc</span>
+      <span class="sl-sub">Building, breaking, learning</span>
+    </div>
+    <div class="section-label" data-range="0.60,0.74">
+      <span class="sl-title">Now</span>
+      <span class="sl-sub">Everything connects here</span>
+    </div>
+    <div class="section-label" data-range="0.78,0.88">
+      <span class="sl-title">Published Author</span>
+      <span class="sl-sub">Oh, he also wrote a book</span>
+    </div>
+    <div class="section-label" data-range="0.89,0.97">
+      <span class="sl-title">Beyond the Code</span>
+      <span class="sl-sub">The human behind the data</span>
+    </div>
   </div>
 
   <!-- Nav -->
@@ -794,14 +797,24 @@
     box-shadow: 0 0 12px rgba(244,168,67,0.4);
   }
 
-  /* ═══ SECTION LABELS ═══ */
+  /* ═══ SECTION LABELS — fixed centered overlays ═══ */
+  .section-labels {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 5;
+  }
   .section-label {
     position: absolute;
-    bottom: 360px;
-    transform: translateX(-50%);
+    top: 22%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     text-align: center;
     pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.4s ease;
   }
+  .section-label.active { opacity: 1; }
   .sl-title {
     display: block;
     font-family: var(--font-serif);
@@ -1487,7 +1500,9 @@
     .lp-link { font-size: 0.72rem; }
 
     /* Section labels — above content zones */
-    .section-label { bottom: 85%; }
+    .section-label { top: 12%; }
+    .sl-title { font-size: 1.1rem; }
+    .sl-sub { font-size: 0.6rem; }
     .sl-title { font-size: 1rem; }
     .sl-sub { font-size: 0.6rem; }
 

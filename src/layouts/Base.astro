@@ -34,6 +34,7 @@ const { title = 'Ayush Saxena | Builder, Analyst, Author', description = 'Data a
     const pxMid = document.getElementById('pxMid');
     const character = document.getElementById('character');
     const progressFill = document.getElementById('progressFill');
+    const sectionLabels = document.querySelectorAll('.section-label[data-range]');
 
     if (!world) throw new Error('World not found');
 
@@ -147,6 +148,12 @@ const { title = 'Ayush Saxena | Builder, Analyst, Author', description = 'Data a
         if (progressFill) {
           progressFill.style.width = `${p * 100}%`;
         }
+
+        // Section labels — show the one whose range contains current progress
+        sectionLabels.forEach(label => {
+          const [start, end] = (label as HTMLElement).dataset.range!.split(',').map(Number);
+          (label as HTMLElement).classList.toggle('active', p >= start && p <= end);
+        });
 
         // Outfit swap
         const targetIdx = getOutfitIndex(p);
