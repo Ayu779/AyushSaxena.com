@@ -1,0 +1,210 @@
+---
+interface Props { title?: string; description?: string; }
+const { title = 'Ayush Saxena | Builder, Analyst, Author', description = 'Data analyst, founder, and author. Building Yovance, an AI growth and automation studio. Previously built Arisva. Published author of Eleven Seconds.' } = Astro.props;
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content={description} />
+  <title>{title}</title>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://ayushsaxena.com" />
+  <meta property="og:image" content="https://ayushsaxena.com/assets/ayush.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+</head>
+<body>
+  <slot />
+  <script>
+    import { gsap } from 'gsap';
+    import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+    gsap.registerPlugin(ScrollTrigger);
+
+    const world = document.getElementById('world');
+    const sky = document.getElementById('sky');
+    const stars = document.getElementById('stars');
+    const pxFar = document.getElementById('pxFar');
+    const pxMid = document.getElementById('pxMid');
+    const character = document.getElementById('character');
+    const progressFill = document.getElementById('progressFill');
+
+    if (!world) throw new Error('World not found');
+
+    const worldWidth = 11300;
+    const viewportWidth = window.innerWidth;
+    const isMobile = viewportWidth <= 768;
+    const maxScroll = isMobile ? 10560 : worldWidth - viewportWidth;
+
+    // Sky color stops for the gradient shift
+    const skyStops = [
+      { pos: 0,   top: '#0B1026', mid: '#1a1040', bot: '#2a1a50' },
+      { pos: 0.25, top: '#0F0E2A', mid: '#2D1B55', bot: '#3E2060' },
+      { pos: 0.5,  top: '#1A1030', mid: '#5C2E3E', bot: '#7A3535' },
+      { pos: 0.75, top: '#2A1520', mid: '#8B3A3A', bot: '#C04B2D' },
+      { pos: 1,   top: '#3A1A15', mid: '#C04B2D', bot: '#E8764B' },
+    ];
+
+    function lerpColor(a: string, b: string, t: number): string {
+      const parse = (c: string) => [parseInt(c.slice(1,3),16), parseInt(c.slice(3,5),16), parseInt(c.slice(5,7),16)];
+      const ca = parse(a), cb = parse(b);
+      const r = Math.round(ca[0] + (cb[0]-ca[0])*t);
+      const g = Math.round(ca[1] + (cb[1]-ca[1])*t);
+      const b2 = Math.round(ca[2] + (cb[2]-ca[2])*t);
+      return `rgb(${r},${g},${b2})`;
+    }
+
+    function getSkyColors(progress: number) {
+      let i = 0;
+      while (i < skyStops.length - 1 && skyStops[i+1].pos < progress) i++;
+      if (i >= skyStops.length - 1) return skyStops[skyStops.length-1];
+      const a = skyStops[i], b = skyStops[i+1];
+      const t = (progress - a.pos) / (b.pos - a.pos);
+      return {
+        top: lerpColor(a.top, b.top, t),
+        mid: lerpColor(a.mid, b.mid, t),
+        bot: lerpColor(a.bot, b.bot, t),
+      };
+    }
+
+    // Walking state
+    let isScrolling = false;
+    let scrollTimeout: number;
+
+    // Outfit progression — preload all avatar images
+    const charImg = document.getElementById('charImg') as HTMLImageElement | null;
+    ['/assets/avatar-college.png', '/assets/avatar-corporate.png', '/assets/avatar-founder.png', '/assets/avatar-casual.png'].forEach(src => {
+      const img = new Image();
+      img.src = src;
+    });
+    const outfits = [
+      { threshold: 0,    src: '/assets/avatar-school.png' },
+      { threshold: 0.13, src: '/assets/avatar-college.png' },
+      { threshold: 0.24, src: '/assets/avatar-corporate.png' },
+      { threshold: 0.43, src: '/assets/avatar-founder.png' },
+      { threshold: 0.78, src: '/assets/avatar-casual.png' },
+    ];
+    let currentOutfitIdx = 0;
+    let isJumping = false;
+
+    function getOutfitIndex(progress: number): number {
+      for (let i = outfits.length - 1; i >= 0; i--) {
+        if (progress >= outfits[i].threshold) return i;
+      }
+      return 0;
+    }
+
+    function triggerJump(newIdx: number) {
+      if (isJumping || !character || !charImg) return;
+      isJumping = true;
+      character.classList.remove('walking');
+      character.classList.add('jumping');
+      setTimeout(() => {
+        charImg.src = outfits[newIdx].src;
+        currentOutfitIdx = newIdx;
+      }, 160);
+      setTimeout(() => {
+        character.classList.remove('jumping');
+        isJumping = false;
+      }, 400);
+    }
+
+    // Main scroll-driven animation
+    ScrollTrigger.create({
+      trigger: '#scrollSpacer',
+      start: 'top top',
+      end: 'bottom bottom',
+      scrub: 0.5,
+      onUpdate: (self) => {
+        const p = self.progress;
+
+        // Move world
+        gsap.set(world, { x: -maxScroll * p });
+
+        // Parallax layers
+        gsap.set(pxFar, { x: -maxScroll * p * 0.15 });
+        gsap.set(pxMid, { x: -maxScroll * p * 0.35 });
+
+        // Sky gradient
+        const colors = getSkyColors(p);
+        if (sky) {
+          sky.style.background = `linear-gradient(180deg, ${colors.top} 0%, ${colors.mid} 50%, ${colors.bot} 100%)`;
+        }
+
+        // Stars fade
+        if (stars) {
+          stars.style.opacity = String(Math.max(0, 1 - p * 2.5));
+        }
+
+        // Progress bar
+        if (progressFill) {
+          progressFill.style.width = `${p * 100}%`;
+        }
+
+        // Outfit swap
+        const targetIdx = getOutfitIndex(p);
+        if (targetIdx !== currentOutfitIdx) {
+          triggerJump(targetIdx);
+        }
+
+        // Walking animation
+        if (!isJumping) {
+          if (!isScrolling) {
+            isScrolling = true;
+            character?.classList.add('walking');
+          }
+          clearTimeout(scrollTimeout);
+          scrollTimeout = window.setTimeout(() => {
+            isScrolling = false;
+            character?.classList.remove('walking');
+          }, 150);
+        }
+      }
+    });
+
+    // Nav buttons
+    document.querySelectorAll('.gn-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const target = parseFloat(btn.getAttribute('data-target') || '0');
+        const spacer = document.getElementById('scrollSpacer');
+        if (spacer) {
+          const scrollTo = target * (spacer.offsetHeight - window.innerHeight);
+          window.scrollTo({ top: scrollTo, behavior: 'smooth' });
+        }
+      });
+    });
+
+    // Update active nav button
+    ScrollTrigger.create({
+      trigger: '#scrollSpacer',
+      start: 'top top',
+      end: 'bottom bottom',
+      onUpdate: (self) => {
+        const p = self.progress;
+        const btns = document.querySelectorAll('.gn-btn');
+        btns.forEach(btn => {
+          const t = parseFloat(btn.getAttribute('data-target') || '0');
+          const next = btn.nextElementSibling as HTMLElement;
+          const nextT = next ? parseFloat(next.getAttribute('data-target') || '1') : 1;
+          btn.classList.toggle('active', p >= t && p < nextT);
+        });
+      }
+    });
+
+    // Resize handler
+    window.addEventListener('resize', () => {
+      ScrollTrigger.refresh();
+    });
+
+  </script>
+</body>
+</html>
+<style is:global>
+  @import '../styles/global.css';
+</style>

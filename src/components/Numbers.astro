@@ -1,0 +1,108 @@
+---
+const stats = [
+  { value: 28, suffix: '%', label: 'Customer Acquisition Cost reduced', context: 'Meta Ads, Gen AI funnels', icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6" stroke-linecap="round" stroke-linejoin="round"/></svg>' },
+  { value: 98, suffix: '%', label: 'Regression testing time eliminated', context: '40 min → 90 seconds', icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14" stroke-linecap="round" stroke-linejoin="round"/></svg>' },
+  { value: 69, suffix: '%', label: 'Conversion Rate improvement', context: '1.6% → 2.7% via A/B testing', icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17" stroke-linecap="round" stroke-linejoin="round"/><polyline points="16 7 22 7 22 13" stroke-linecap="round" stroke-linejoin="round"/></svg>' },
+  { value: 22, suffix: '%', label: 'Repeat purchase rate increase', context: 'Cohort analysis + segmentation', icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 2.1l4 4-4 4" stroke-linecap="round" stroke-linejoin="round"/><path d="M3 12.2v-2a4 4 0 014-4h12.8M7 21.9l-4-4 4-4" stroke-linecap="round" stroke-linejoin="round"/><path d="M21 11.8v2a4 4 0 01-4 4H4.2" stroke-linecap="round" stroke-linejoin="round"/></svg>' },
+  { value: 15, suffix: '%', label: 'Stock imbalance reduced', context: 'Supply chain, EMEA & NA markets', icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="6" width="22" height="12" rx="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M1 10h22M6 14h4M6 17h2" stroke-linecap="round" stroke-linejoin="round"/></svg>' },
+  { value: 8, suffix: '', label: 'Products designed & launched', context: 'Arisva D2C brand, solo', icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83 0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z" stroke-linecap="round" stroke-linejoin="round"/><line x1="7" y1="7" x2="7.01" y2="7" stroke-linecap="round" stroke-linejoin="round"/></svg>' },
+];
+---
+<section class="section numbers" id="numbers">
+  <div class="container">
+    <span class="section-label reveal">Impact</span>
+    <h2 class="section-title reveal stagger-1">Numbers that tell the story</h2>
+    <div class="divider reveal stagger-2"></div>
+
+    <div class="numbers-grid">
+      {stats.map((s, i) => (
+        <div class={`number-card reveal stagger-${(i % 4) + 1}`}>
+          <span class="number-icon" set:html={s.icon} />
+          <span class="number-value" data-count={String(s.value)} data-suffix={s.suffix}>0{s.suffix}</span>
+          <span class="number-label">{s.label}</span>
+          <span class="number-context">{s.context}</span>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .numbers {
+    background: var(--bg-deep);
+    position: relative;
+    overflow: hidden;
+  }
+  .numbers::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 800px;
+    height: 800px;
+    border-radius: 50%;
+    background: radial-gradient(circle, var(--accent-glow) 0%, transparent 60%);
+    filter: blur(120px);
+    pointer-events: none;
+  }
+  .numbers-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    position: relative;
+    z-index: 1;
+  }
+  .number-card {
+    padding: 36px 28px;
+    background: rgba(20, 20, 25, 0.8);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    text-align: center;
+    transition: border-color 0.3s, transform 0.3s;
+  }
+  .number-card:hover {
+    border-color: var(--border-accent);
+    transform: translateY(-4px);
+  }
+  .number-icon {
+    display: block;
+    width: 24px;
+    height: 24px;
+    color: var(--accent);
+    opacity: 0.5;
+    margin: 0 auto 12px;
+  }
+  .number-icon :global(svg) {
+    width: 100%;
+    height: 100%;
+  }
+  .number-value {
+    display: block;
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--accent);
+    letter-spacing: -0.03em;
+    margin-bottom: 12px;
+  }
+  .number-label {
+    display: block;
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--text-primary);
+    margin-bottom: 8px;
+  }
+  .number-context {
+    display: block;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+  }
+  @media (max-width: 768px) {
+    .numbers-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 480px) {
+    .numbers-grid { grid-template-columns: 1fr; }
+    .number-value { font-size: 2.5rem; }
+  }
+</style>

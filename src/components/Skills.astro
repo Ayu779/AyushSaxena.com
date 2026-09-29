@@ -1,0 +1,197 @@
+---
+const categories = [
+  {
+    title: 'Programming & Data',
+    skills: ['Python', 'SQL', 'MongoDB', 'Pandas', 'NumPy', 'Sklearn', 'Excel'],
+    icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>',
+  },
+  {
+    title: 'Analytics',
+    skills: ['A/B Testing', 'Cohort Analysis', 'RFM', 'Funnel Analysis', 'Demand Forecasting', 'Anomaly Detection'],
+    icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>',
+  },
+  {
+    title: 'Marketing',
+    skills: ['CAC/LTV', 'ROAS', 'Meta Ads', 'Performance Marketing', 'CRO', 'Brand Building'],
+    icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>',
+  },
+  {
+    title: 'AI & Intelligence',
+    skills: ['LLM Evaluation', 'Prompt Engineering', 'Churn Prediction', 'NLP', 'Gen AI Workflows'],
+    icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 9h6M9 13h6M9 17h4"/><circle cx="4" cy="8" r="1" fill="currentColor"/><circle cx="4" cy="16" r="1" fill="currentColor"/><circle cx="20" cy="8" r="1" fill="currentColor"/><circle cx="20" cy="16" r="1" fill="currentColor"/></svg>',
+  },
+  {
+    title: 'BI & Ops',
+    skills: ['Power BI', 'Supply Chain Analytics', 'Inventory Optimization', 'Agile/Scrum'],
+    icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>',
+  },
+];
+
+const education = [
+  { degree: 'MBA', field: 'Business Analytics', school: 'BITS Pilani', highlight: true },
+  { degree: 'BTech', field: 'Computer Science & Engineering', school: 'JIIT Noida', highlight: false },
+];
+---
+<section class="section skills" id="skills">
+  <div class="container">
+    <div class="skills-edu-grid">
+      <div class="skills-col">
+        <span class="section-label reveal">Toolkit</span>
+        <h2 class="section-title reveal stagger-1">Skills</h2>
+        <div class="divider reveal stagger-2"></div>
+        <div class="skills-categories">
+          {categories.map((cat, i) => (
+            <div class={`skill-category reveal stagger-${(i % 4) + 1}`}>
+              <div class="skill-cat-header">
+                <span class="skill-cat-icon" set:html={cat.icon} />
+                <h3 class="skill-cat-title">{cat.title}</h3>
+              </div>
+              <div class="skill-tags">
+                {cat.skills.map(s => <span class="skill-tag">{s}</span>)}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div class="edu-col">
+        <span class="section-label reveal">Education</span>
+        <h2 class="section-title reveal stagger-1">Degrees</h2>
+        <div class="divider reveal stagger-2"></div>
+        {education.map((e, i) => (
+          <div class={`edu-card reveal stagger-${i + 1} ${e.highlight ? 'edu-highlight' : ''}`}>
+            <span class="edu-degree">{e.degree}</span>
+            <span class="edu-field">{e.field}</span>
+            <span class="edu-school">{e.school}</span>
+          </div>
+        ))}
+
+        <div class="project-card reveal stagger-3">
+          <span class="section-label">Key Project</span>
+          <h3 class="project-title">Enterprise Decision Intelligence Platform</h3>
+          <p class="project-desc">
+            End-to-end platform for a mid-sized e-commerce business.
+            Unified dimensional data model serving customer analytics, RFM segmentation,
+            churn prediction, demand forecasting, and a Gen AI insight layer that converts
+            complex outputs into plain-language recommendations.
+          </p>
+          <div class="project-tags">
+            {['Python', 'SQL', 'ML', 'Gen AI', 'Power BI'].map(t => <span class="skill-tag">{t}</span>)}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .skills {
+    background: linear-gradient(180deg, var(--bg-deep) 0%, var(--bg-elevated) 100%);
+  }
+  .skills-edu-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 60px;
+  }
+  .skills-categories {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+  }
+  .skill-cat-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+  }
+  .skill-cat-icon {
+    width: 18px;
+    height: 18px;
+    color: var(--accent);
+    flex-shrink: 0;
+  }
+  .skill-cat-icon :global(svg) {
+    width: 100%;
+    height: 100%;
+  }
+  .skill-cat-title {
+    font-size: 0.8rem;
+    margin-bottom: 0;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+  .skill-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .skill-tag {
+    padding: 6px 14px;
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .skill-tag:hover {
+    border-color: var(--border-accent);
+    color: var(--accent);
+  }
+  .edu-card {
+    padding: 28px;
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    margin-bottom: 16px;
+  }
+  .edu-highlight {
+    border-color: var(--border-accent);
+    background: linear-gradient(135deg, var(--bg-surface) 0%, rgba(212, 168, 83, 0.05) 100%);
+  }
+  .edu-degree {
+    display: block;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 4px;
+  }
+  .edu-field {
+    display: block;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 4px;
+  }
+  .edu-school {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+  }
+  .project-card {
+    padding: 28px;
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    margin-top: 16px;
+  }
+  .project-title {
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin: 8px 0 12px;
+  }
+  .project-desc {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: 16px;
+  }
+  .project-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+  @media (max-width: 768px) {
+    .skills-edu-grid { grid-template-columns: 1fr; gap: 40px; }
+  }
+</style>

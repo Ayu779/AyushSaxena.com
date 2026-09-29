@@ -1,0 +1,169 @@
+---
+const products = [
+  { name: 'Chandan', img: '/assets/arisva/chandan.jpg' },
+  { name: 'Ashtgandh', img: '/assets/arisva/ashtgandh.jpg' },
+  { name: 'Patchouli', img: '/assets/arisva/patchouli.jpg' },
+  { name: 'Hawan', img: '/assets/arisva/hawan.jpg' },
+  { name: 'Guggal', img: '/assets/arisva/guggal.jpg' },
+  { name: 'Oudh', img: '/assets/arisva/oudh.jpg' },
+  { name: 'Kastoor', img: '/assets/arisva/kastoor.jpg' },
+  { name: 'Mogra', img: '/assets/arisva/mogra.jpg' },
+];
+
+const stats = [
+  { value: '3.5', suffix: 'L', prefix: '₹', label: 'Peak monthly revenue' },
+  { value: '28', suffix: '%', prefix: '', label: 'CAC reduction' },
+  { value: '2.8', suffix: 'x', prefix: '', label: 'ROAS maintained' },
+  { value: '69', suffix: '%', prefix: '', label: 'CVR improvement' },
+];
+---
+<section class="section arisva" id="arisva">
+  <div class="container">
+    <span class="section-label reveal">Chapter: Arisva</span>
+    <h2 class="section-title reveal stagger-1">The brand I built<br/>and shut down</h2>
+    <p class="section-subtitle reveal stagger-2">
+      A D2C bambooless incense brand. Eight fragrances, modern packaging,
+      everything built solo — from product design to Meta ads to customer support.
+      It had traction. It didn't have a sustainable model.
+    </p>
+    <div class="divider reveal stagger-3"></div>
+  </div>
+
+  <div class="arisva-gallery">
+    <div class="gallery-track">
+      {products.map((p, i) => (
+        <div class={`gallery-item reveal stagger-${(i % 6) + 1}`}>
+          <img src={p.img} alt={`Arisva ${p.name}`} loading="lazy" />
+        </div>
+      ))}
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="arisva-stats reveal">
+      {stats.map(s => (
+        <div class="stat-card">
+          <span class="stat-value" data-count={s.value.includes('.') ? undefined : s.value} data-suffix={s.suffix} data-prefix={s.prefix}>
+            {s.prefix}{s.value}{s.suffix}
+          </span>
+          <span class="stat-label">{s.label}</span>
+        </div>
+      ))}
+    </div>
+
+    <div class="arisva-narrative reveal">
+      <div class="narrative-block">
+        <h3>What worked</h3>
+        <p>The brand resonated. Conversion rates climbed from 1.6% to 2.7%.
+           Repeat purchase rate grew 22%. Customers came back for Chandan and Mogra.
+           The packaging stood on shelves against brands 10x its size.</p>
+      </div>
+      <div class="narrative-block">
+        <h3>What didn't</h3>
+        <p>The business was built on paid acquisition with ~150 organic followers.
+           Every customer had a cost. At ₹3.5L monthly revenue, margins were thin
+           and scaling meant spending more — not compounding. Traction isn't a business model.</p>
+      </div>
+      <div class="narrative-block">
+        <h3>What it taught me</h3>
+        <p>That building a brand is craft. That unit economics don't lie.
+           That a solo founder wearing every hat eventually drops one.
+           And that the best time to start the next thing is when you've been honest about the last.</p>
+      </div>
+    </div>
+
+    <p class="arisva-coda reveal">
+      <em>Arisva taught me that traction isn't a business model. <span class="gold">Yovance was built on that lesson.</span></em>
+    </p>
+  </div>
+</section>
+
+<style>
+  .arisva { background: var(--bg-deep); }
+  .arisva-gallery {
+    overflow: hidden;
+    padding: 40px 0;
+  }
+  .gallery-track {
+    display: flex;
+    gap: 16px;
+    padding: 0 var(--gutter);
+    width: max-content;
+  }
+  .gallery-item {
+    flex-shrink: 0;
+    width: 200px;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s;
+  }
+  .gallery-item:hover {
+    transform: translateY(-8px) scale(1.02);
+    border-color: var(--border-accent);
+  }
+  .gallery-item img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  .arisva-stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    margin: 40px 0 60px;
+  }
+  .stat-card {
+    padding: 28px 24px;
+    background: var(--bg-elevated);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    text-align: center;
+    transition: border-color 0.3s;
+  }
+  .stat-card:hover { border-color: var(--border-accent); }
+  .stat-value {
+    display: block;
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: var(--accent);
+    margin-bottom: 8px;
+    letter-spacing: -0.02em;
+  }
+  .stat-label {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+  .arisva-narrative {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+    margin-bottom: 48px;
+  }
+  .narrative-block h3 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--accent);
+    margin-bottom: 12px;
+  }
+  .narrative-block p {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    line-height: 1.7;
+  }
+  .arisva-coda {
+    font-family: var(--font-serif);
+    font-size: 1.3rem;
+    text-align: center;
+    color: var(--text-secondary);
+    padding: 32px 0;
+    border-top: 1px solid var(--border);
+  }
+  @media (max-width: 768px) {
+    .arisva-stats { grid-template-columns: repeat(2, 1fr); }
+    .arisva-narrative { grid-template-columns: 1fr; gap: 24px; }
+    .gallery-item { width: 160px; }
+  }
+</style>

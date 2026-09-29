@@ -1,0 +1,103 @@
+---
+const links = [
+  { href: '#journey', label: 'Journey' },
+  { href: '#arisva', label: 'Arisva' },
+  { href: '#yovance', label: 'Yovance' },
+  { href: '#book', label: 'Book' },
+  { href: '#contact', label: 'Contact' },
+];
+---
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">AS</a>
+    <div class="nav-links">
+      {links.map(l => <a href={l.href}>{l.label}</a>)}
+    </div>
+    <button class="nav-toggle" aria-label="Menu">
+      <span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<style>
+  .nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    padding: 20px 0;
+    transition: background 0.3s, padding 0.3s, backdrop-filter 0.3s;
+  }
+  .nav.scrolled {
+    background: rgba(9, 9, 11, 0.85);
+    backdrop-filter: blur(20px);
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-inner {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: 0 var(--gutter);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .nav-logo {
+    font-weight: 700;
+    font-size: 1.25rem;
+    color: var(--accent);
+    letter-spacing: -0.02em;
+  }
+  .nav-links {
+    display: flex;
+    gap: 32px;
+  }
+  .nav-links a {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    letter-spacing: 0.03em;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--accent); }
+  .nav-toggle { display: none; background: none; border: none; cursor: pointer; padding: 8px; }
+  .nav-toggle span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: var(--text-primary);
+    margin: 6px 0;
+    transition: 0.3s;
+  }
+  @media (max-width: 768px) {
+    .nav-links { display: none; }
+    .nav-toggle { display: block; }
+    .nav-links.open {
+      display: flex;
+      flex-direction: column;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background: rgba(9, 9, 11, 0.95);
+      backdrop-filter: blur(20px);
+      padding: 24px;
+      gap: 20px;
+      border-bottom: 1px solid var(--border);
+    }
+  }
+</style>
+
+<script>
+  const nav = document.querySelector('.nav');
+  const toggle = document.querySelector('.nav-toggle');
+  const links = document.querySelector('.nav-links');
+  window.addEventListener('scroll', () => {
+    nav?.classList.toggle('scrolled', window.scrollY > 50);
+  });
+  toggle?.addEventListener('click', () => links?.classList.toggle('open'));
+  links?.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => links?.classList.remove('open'));
+  });
+</script>

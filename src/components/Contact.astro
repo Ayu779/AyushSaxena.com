@@ -1,0 +1,102 @@
+---
+---
+<section class="section contact" id="contact">
+  <div class="container">
+    <span class="section-label reveal">Let's Connect</span>
+    <h2 class="contact-heading reveal stagger-1">
+      Have something in mind?<br/>
+      <span class="gold">Let's talk.</span>
+    </h2>
+
+    <div class="contact-links reveal stagger-2">
+      <a href="mailto:ayushsaxena7777@gmail.com" class="contact-item">
+        <span class="contact-type">Email</span>
+        <span class="contact-value">ayushsaxena7777@gmail.com</span>
+      </a>
+      <a href="https://linkedin.com/in/ayushsaxena77" target="_blank" rel="noopener" class="contact-item">
+        <span class="contact-type">LinkedIn</span>
+        <span class="contact-value">linkedin.com/in/ayushsaxena77</span>
+      </a>
+      <a href="https://yovance.pro" target="_blank" rel="noopener" class="contact-item">
+        <span class="contact-type">Yovance</span>
+        <span class="contact-value">yovance.pro</span>
+      </a>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <span class="footer-name">Ayush Saxena</span>
+      <span class="footer-copy">&copy; 2026</span>
+    </div>
+  </footer>
+</section>
+
+<style>
+  .contact {
+    padding-bottom: 0;
+    background: var(--bg-deep);
+  }
+  .contact-heading {
+    font-family: var(--font-serif);
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 400;
+    font-style: italic;
+    line-height: 1.3;
+    margin-bottom: 48px;
+  }
+  .contact-links {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-bottom: 80px;
+  }
+  .contact-item {
+    display: flex;
+    flex-direction: column;
+    padding: 28px;
+    background: var(--bg-elevated);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    transition: border-color 0.3s, transform 0.3s;
+  }
+  .contact-item:hover {
+    border-color: var(--border-accent);
+    transform: translateY(-4px);
+    color: var(--accent);
+  }
+  .contact-type {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+  .contact-value {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    word-break: break-all;
+  }
+  .footer {
+    border-top: 1px solid var(--border);
+    padding: 24px 0;
+  }
+  .footer-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .footer-name {
+    font-weight: 600;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+  }
+  .footer-copy {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+  }
+  @media (max-width: 768px) {
+    .contact-links { grid-template-columns: 1fr; }
+  }
+</style>

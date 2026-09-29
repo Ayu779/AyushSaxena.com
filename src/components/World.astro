@@ -1,0 +1,1512 @@
+---
+---
+<!-- Fixed viewport -->
+<div class="game-viewport" id="viewport">
+
+  <!-- Sky -->
+  <div class="sky" id="sky"></div>
+
+  <!-- Stars -->
+  <div class="stars" id="stars">
+    {Array.from({ length: 40 }).map((_, i) => (
+      <span class="star" style={`left:${Math.random()*100}%;top:${Math.random()*60}%;animation-delay:${Math.random()*3}s;opacity:${0.3+Math.random()*0.7}`}></span>
+    ))}
+  </div>
+
+  <!-- Far parallax: mountains -->
+  <div class="parallax-far" id="pxFar">
+    <svg class="mountains" viewBox="0 0 6000 300" preserveAspectRatio="none">
+      <path d="M0,300 L0,200 L200,120 L400,180 L600,80 L800,160 L1000,60 L1200,140 L1400,100 L1600,170 L1800,50 L2000,130 L2200,90 L2400,160 L2600,70 L2800,150 L3000,40 L3200,120 L3400,80 L3600,150 L3800,60 L4000,140 L4200,100 L4400,170 L4600,50 L4800,130 L5000,90 L5200,160 L5400,70 L5600,120 L5800,80 L6000,150 L6000,300Z" fill="rgba(15,15,26,0.5)"/>
+      <path d="M0,300 L0,220 L300,160 L500,200 L700,140 L900,190 L1100,120 L1300,180 L1500,130 L1700,200 L1900,110 L2100,170 L2300,140 L2500,190 L2700,100 L2900,160 L3100,120 L3300,180 L3500,130 L3700,200 L3900,110 L4100,170 L4300,140 L4500,190 L4700,100 L4900,160 L5100,120 L5300,180 L5500,130 L5700,170 L6000,200 L6000,300Z" fill="rgba(15,15,26,0.35)"/>
+    </svg>
+  </div>
+
+  <!-- Mid parallax: city silhouette -->
+  <div class="parallax-mid" id="pxMid">
+    <svg class="cityscape" viewBox="0 0 8000 250" preserveAspectRatio="none">
+      <rect x="200" y="130" width="60" height="120" fill="rgba(15,15,26,0.6)"/>
+      <rect x="280" y="100" width="40" height="150" fill="rgba(15,15,26,0.55)"/>
+      <rect x="340" y="150" width="70" height="100" fill="rgba(15,15,26,0.6)"/>
+      <rect x="700" y="110" width="50" height="140" fill="rgba(15,15,26,0.55)"/>
+      <rect x="770" y="80" width="35" height="170" fill="rgba(15,15,26,0.6)"/>
+      <rect x="1200" y="120" width="80" height="130" fill="rgba(15,15,26,0.55)"/>
+      <rect x="1300" y="90" width="45" height="160" fill="rgba(15,15,26,0.6)"/>
+      <rect x="1800" y="100" width="60" height="150" fill="rgba(15,15,26,0.55)"/>
+      <rect x="1880" y="130" width="50" height="120" fill="rgba(15,15,26,0.6)"/>
+      <rect x="2400" y="80" width="70" height="170" fill="rgba(15,15,26,0.55)"/>
+      <rect x="2500" y="120" width="40" height="130" fill="rgba(15,15,26,0.6)"/>
+      <rect x="3000" y="100" width="55" height="150" fill="rgba(15,15,26,0.55)"/>
+      <rect x="3100" y="140" width="65" height="110" fill="rgba(15,15,26,0.6)"/>
+      <rect x="3600" y="90" width="50" height="160" fill="rgba(15,15,26,0.55)"/>
+      <rect x="4200" y="110" width="60" height="140" fill="rgba(15,15,26,0.6)"/>
+      <rect x="4800" y="100" width="45" height="150" fill="rgba(15,15,26,0.55)"/>
+      <rect x="5400" y="120" width="70" height="130" fill="rgba(15,15,26,0.6)"/>
+      <rect x="6000" y="90" width="55" height="160" fill="rgba(15,15,26,0.55)"/>
+      <rect x="6600" y="130" width="60" height="120" fill="rgba(15,15,26,0.6)"/>
+      <rect x="7200" y="100" width="50" height="150" fill="rgba(15,15,26,0.55)"/>
+    </svg>
+  </div>
+
+  <!-- World layer -->
+  <div class="world-layer" id="world">
+
+    <!-- Ground -->
+    <div class="ground"></div>
+    <div class="ground-line"></div>
+
+    <!-- ═══════ SECTION LABELS ═══════ -->
+    <div class="section-label" style="left: 1500px">
+      <span class="sl-title">Origins</span>
+      <span class="sl-sub">Curiosity turned into code</span>
+    </div>
+    <div class="section-label" style="left: 3450px">
+      <span class="sl-title">Corporate Years</span>
+      <span class="sl-sub">Learning to build at scale</span>
+    </div>
+    <div class="section-label" style="left: 5550px">
+      <span class="sl-title">Founder Arc</span>
+      <span class="sl-sub">Building, breaking, learning</span>
+    </div>
+    <div class="section-label" style="left: 7300px">
+      <span class="sl-title">Now</span>
+      <span class="sl-sub">Everything connects here</span>
+    </div>
+    <div class="section-label" style="left: 9200px">
+      <span class="sl-title">Beyond the Code</span>
+      <span class="sl-sub">The human behind the data</span>
+    </div>
+
+    <!-- ═══════ TIMELINE RAIL ═══════ -->
+    <div class="timeline-rail">
+      <div class="tl-line"></div>
+      <div class="tl-marker" style="left: 2400px"><span class="tl-year">2017</span><div class="tl-dot"></div></div>
+      <div class="tl-marker" style="left: 3100px"><span class="tl-year">2021</span><div class="tl-dot"></div></div>
+      <div class="tl-marker" style="left: 3800px"><span class="tl-year">2022</span><div class="tl-dot"></div></div>
+      <div class="tl-marker" style="left: 4500px"><span class="tl-year">2023</span><div class="tl-dot"></div></div>
+      <div class="tl-marker" style="left: 5200px"><span class="tl-year">2024</span><div class="tl-dot"></div></div>
+      <div class="tl-marker" style="left: 5900px"><span class="tl-year">2025</span><div class="tl-dot"></div></div>
+      <div class="tl-marker accent-marker" style="left: 7300px"><span class="tl-year">2026</span><div class="tl-dot"></div></div>
+      <div class="tl-marker" style="left: 10600px"><span class="tl-year">NOW</span><div class="tl-dot"></div></div>
+    </div>
+
+    <!-- ═══════ HERO ═══════ -->
+    <div class="zone zone-hero" style="left: 100px">
+      <div class="hero-title">
+        <p class="hero-pre">Interactive Portfolio of</p>
+        <h1 class="hero-name">Ayush<br/><span class="accent">Saxena</span></h1>
+        <p class="hero-sub">Builder · Analyst · Author</p>
+      </div>
+      <div class="signpost" style="left: 700px">
+        <div class="sign-arrow">Scroll to explore →</div>
+        <div class="sign-pole"></div>
+      </div>
+    </div>
+
+    <!-- Scenery -->
+    <div class="tree" style="left: 500px"><svg viewBox="0 0 40 60"><circle cx="20" cy="15" r="15" fill="rgba(15,15,26,0.7)"/><rect x="18" y="28" width="4" height="32" fill="rgba(15,15,26,0.8)"/></svg></div>
+    <div class="tree" style="left: 900px"><svg viewBox="0 0 40 50"><circle cx="20" cy="12" r="12" fill="rgba(15,15,26,0.65)"/><rect x="18" y="22" width="4" height="28" fill="rgba(15,15,26,0.75)"/></svg></div>
+
+    <!-- ═══════ CHILDHOOD ═══════ -->
+    <div class="zone" style="left: 1200px">
+      <div class="office">
+        <svg viewBox="-30 0 191 130"><rect x="15" y="15" width="100" height="100" rx="8" fill="#161630" stroke="rgba(108,51,255,0.25)" stroke-width="0.8"/><rect x="30" y="35" width="30" height="20" rx="3" fill="rgba(108,51,255,0.2)"/><rect x="65" y="35" width="30" height="20" rx="3" fill="rgba(74,158,255,0.2)"/><rect x="30" y="60" width="30" height="20" rx="3" fill="rgba(74,158,255,0.2)"/><rect x="65" y="60" width="30" height="20" rx="3" fill="rgba(108,51,255,0.2)"/><rect x="45" y="90" width="40" height="15" rx="6" fill="rgba(244,168,67,0.2)" stroke="rgba(244,168,67,0.3)" stroke-width="0.5"/><circle cx="55" cy="97" r="2" fill="var(--accent)" opacity="0.5"/><circle cx="65" cy="97" r="2" fill="var(--accent)" opacity="0.5"/><circle cx="75" cy="97" r="2" fill="var(--accent)" opacity="0.5"/></svg>
+        <div class="office-label">
+          <span class="ol-name">Childhood</span>
+          <span class="ol-desc">Fascinated by video games. How do they work?</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="lamp" style="left: 1600px"><svg viewBox="0 0 20 80"><rect x="9" y="10" width="2" height="70" fill="rgba(244,168,67,0.3)"/><circle cx="10" cy="8" r="5" fill="var(--accent)" opacity="0.8"/><circle cx="10" cy="8" r="15" fill="var(--accent)" opacity="0.08"/></svg></div>
+
+    <!-- ═══════ CLASS 8 ═══════ -->
+    <div class="zone" style="left: 1800px">
+      <div class="office">
+        <svg viewBox="-30 0 191 130"><rect x="10" y="10" width="110" height="80" rx="4" fill="#161630" stroke="rgba(16,217,160,0.25)" stroke-width="0.8"/><rect x="18" y="18" width="94" height="60" rx="2" fill="#0a0a18"/><text x="65" y="42" text-anchor="middle" fill="rgba(16,217,160,0.6)" font-size="8" font-family="monospace">&lt;/game&gt;</text><text x="65" y="56" text-anchor="middle" fill="rgba(74,158,255,0.5)" font-size="7" font-family="monospace">render()</text><rect x="30" y="95" width="70" height="8" rx="3" fill="rgba(244,168,67,0.15)"/></svg>
+        <div class="office-label">
+          <span class="ol-name">Class 8</span>
+          <span class="ol-desc">Built a graphic game from scratch</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="tree" style="left: 2150px"><svg viewBox="0 0 40 60"><circle cx="20" cy="15" r="15" fill="rgba(15,15,26,0.7)"/><rect x="18" y="28" width="4" height="32" fill="rgba(15,15,26,0.8)"/></svg></div>
+
+    <!-- ═══════ JIIT NOIDA — BTech CS ═══════ -->
+    <div class="zone" style="left: 2400px">
+      <div class="building">
+        <div class="bldg-logo"><img src="/assets/logos/jiit.png" alt="JIIT" class="logo-img" /></div>
+        <svg viewBox="-22 0 264 180" class="campus-svg">
+          <rect x="20" y="40" width="180" height="140" rx="3" fill="#161630"/>
+          <rect x="20" y="40" width="180" height="140" rx="3" fill="none" stroke="rgba(244,168,67,0.2)" stroke-width="0.8"/>
+          <rect x="20" y="40" width="180" height="8" fill="rgba(244,168,67,0.25)" rx="3"/>
+          <rect x="80" y="10" width="60" height="30" rx="2" fill="#1a1a38"/>
+          <rect x="80" y="10" width="60" height="30" rx="2" fill="none" stroke="rgba(244,168,67,0.2)" stroke-width="0.6"/>
+          <rect x="80" y="10" width="60" height="6" fill="rgba(244,168,67,0.2)" rx="2"/>
+          <line x1="110" y1="0" x2="110" y2="10" stroke="var(--accent)" stroke-width="1.5" opacity="0.6"/>
+          <circle cx="110" cy="0" r="2" fill="var(--accent)" opacity="0.8"/>
+          <rect x="90" y="22" width="10" height="12" rx="1" fill="rgba(74,158,255,0.35)"/>
+          <rect x="105" y="22" width="10" height="12" rx="1" fill="rgba(74,158,255,0.3)"/>
+          <rect x="120" y="22" width="10" height="12" rx="1" fill="rgba(74,158,255,0.35)"/>
+          <rect x="32" y="56" width="22" height="28" rx="2" fill="rgba(74,158,255,0.25)"/>
+          <rect x="62" y="56" width="22" height="28" rx="2" fill="rgba(244,168,67,0.3)"/>
+          <rect x="92" y="56" width="22" height="28" rx="2" fill="rgba(74,158,255,0.2)"/>
+          <rect x="122" y="56" width="22" height="28" rx="2" fill="rgba(244,168,67,0.25)"/>
+          <rect x="152" y="56" width="22" height="28" rx="2" fill="rgba(74,158,255,0.25)"/>
+          <line x1="20" y1="92" x2="200" y2="92" stroke="rgba(244,168,67,0.12)" stroke-width="0.5"/>
+          <rect x="32" y="100" width="22" height="28" rx="2" fill="rgba(244,168,67,0.2)"/>
+          <rect x="62" y="100" width="22" height="28" rx="2" fill="rgba(74,158,255,0.25)"/>
+          <rect x="92" y="100" width="22" height="28" rx="2" fill="rgba(244,168,67,0.25)"/>
+          <rect x="122" y="100" width="22" height="28" rx="2" fill="rgba(74,158,255,0.2)"/>
+          <rect x="152" y="100" width="22" height="28" rx="2" fill="rgba(244,168,67,0.2)"/>
+          <rect x="88" y="145" width="44" height="35" rx="3" fill="rgba(244,168,67,0.35)"/>
+          <rect x="88" y="145" width="44" height="35" rx="3" fill="none" stroke="var(--accent)" stroke-width="0.5" opacity="0.5"/>
+        </svg>
+        <div class="building-label">
+          <span class="bl-title">JIIT Noida</span>
+          <span class="bl-sub">BTech, Computer Science (2017-2021)</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="lamp" style="left: 2900px"><svg viewBox="0 0 20 80"><rect x="9" y="10" width="2" height="70" fill="rgba(244,168,67,0.3)"/><circle cx="10" cy="8" r="5" fill="var(--accent)" opacity="0.8"/><circle cx="10" cy="8" r="15" fill="var(--accent)" opacity="0.08"/></svg></div>
+
+    <!-- ═══════ COGNIZANT — 2021 ═══════ -->
+    <div class="zone" style="left: 3100px">
+      <div class="office">
+        <div class="bldg-logo"><img src="/assets/logos/cognizant.png" alt="Cognizant" class="logo-img" /></div>
+        <div class="office-building"><svg viewBox="-21 0 162 110"><rect x="5" y="15" width="110" height="95" rx="3" fill="#161630" stroke="rgba(244,168,67,0.15)" stroke-width="0.6"/><rect x="5" y="15" width="110" height="8" fill="rgba(74,158,255,0.2)" rx="3"/><rect x="18" y="35" width="18" height="20" rx="2" fill="rgba(74,158,255,0.2)"/><rect x="46" y="35" width="18" height="20" rx="2" fill="rgba(74,158,255,0.15)"/><rect x="74" y="35" width="18" height="20" rx="2" fill="rgba(74,158,255,0.2)"/><rect x="18" y="65" width="18" height="20" rx="2" fill="rgba(74,158,255,0.12)"/><rect x="46" y="65" width="18" height="20" rx="2" fill="rgba(74,158,255,0.18)"/><rect x="74" y="65" width="18" height="20" rx="2" fill="rgba(74,158,255,0.12)"/><rect x="44" y="92" width="24" height="18" rx="2" fill="rgba(244,168,67,0.3)"/></svg></div>
+        <div class="office-label">
+          <span class="ol-name">Cognizant</span>
+          <span class="ol-desc">Cut regression testing by 98%</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════ TIGER ANALYTICS — 2022 ═══════ -->
+    <div class="zone" style="left: 3800px">
+      <div class="office">
+        <div class="bldg-logo"><img src="/assets/logos/tiger-analytics.webp" alt="Tiger Analytics" class="logo-img" /></div>
+        <div class="office-building"><svg viewBox="-30 0 191 130"><rect x="5" y="10" width="120" height="120" rx="3" fill="#161630" stroke="rgba(244,168,67,0.15)" stroke-width="0.6"/><rect x="5" y="10" width="120" height="8" fill="rgba(244,168,67,0.2)" rx="3"/><rect x="18" y="28" width="20" height="24" rx="2" fill="rgba(244,168,67,0.2)"/><rect x="50" y="28" width="20" height="24" rx="2" fill="rgba(244,168,67,0.15)"/><rect x="82" y="28" width="20" height="24" rx="2" fill="rgba(244,168,67,0.2)"/><rect x="18" y="62" width="20" height="24" rx="2" fill="rgba(244,168,67,0.12)"/><rect x="50" y="62" width="20" height="24" rx="2" fill="rgba(244,168,67,0.18)"/><rect x="82" y="62" width="20" height="24" rx="2" fill="rgba(244,168,67,0.12)"/><rect x="18" y="96" width="20" height="18" rx="2" fill="rgba(244,168,67,0.1)"/><rect x="50" y="96" width="20" height="18" rx="2" fill="rgba(244,168,67,0.15)"/><rect x="82" y="96" width="20" height="18" rx="2" fill="rgba(244,168,67,0.1)"/></svg></div>
+        <div class="office-label">
+          <span class="ol-name">Tiger Analytics</span>
+          <span class="ol-desc">Supply chain analytics, EMEA & NA</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="tree" style="left: 4200px"><svg viewBox="0 0 40 60"><circle cx="20" cy="15" r="15" fill="rgba(15,15,26,0.7)"/><rect x="18" y="28" width="4" height="32" fill="rgba(15,15,26,0.8)"/></svg></div>
+
+    <!-- ═══════ AI TRAINER — 2023 ═══════ -->
+    <div class="zone" style="left: 4500px">
+      <div class="office">
+        <div class="office-building"><svg viewBox="-24 0 147 100"><rect x="5" y="10" width="90" height="90" rx="3" fill="#161630" stroke="rgba(108,51,255,0.2)" stroke-width="0.6"/><rect x="5" y="10" width="90" height="8" fill="rgba(108,51,255,0.2)" rx="3"/><rect x="18" y="30" width="16" height="18" rx="2" fill="rgba(108,51,255,0.2)"/><rect x="42" y="30" width="16" height="18" rx="2" fill="rgba(108,51,255,0.15)"/><rect x="66" y="30" width="16" height="18" rx="2" fill="rgba(108,51,255,0.2)"/><rect x="18" y="55" width="16" height="18" rx="2" fill="rgba(108,51,255,0.12)"/><rect x="42" y="55" width="16" height="18" rx="2" fill="rgba(108,51,255,0.18)"/><rect x="66" y="55" width="16" height="18" rx="2" fill="rgba(108,51,255,0.12)"/><rect x="35" y="80" width="30" height="15" rx="2" fill="rgba(244,168,67,0.3)"/></svg></div>
+        <div class="office-label">
+          <span class="ol-name">AI Trainer</span>
+          <span class="ol-desc">Outlier / Deccan AI</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="lamp" style="left: 4950px"><svg viewBox="0 0 20 80"><rect x="9" y="10" width="2" height="70" fill="rgba(244,168,67,0.3)"/><circle cx="10" cy="8" r="5" fill="var(--accent)" opacity="0.8"/><circle cx="10" cy="8" r="15" fill="var(--accent)" opacity="0.08"/></svg></div>
+
+    <!-- ═══════ PROFIT PLUG — 2024 ═══════ -->
+    <div class="zone" style="left: 5200px">
+      <div class="office">
+        <div class="bldg-logo"><img src="/assets/logos/profit-plug.png" alt="Profit Plug" class="logo-img" /></div>
+        <div class="office-building"><svg viewBox="-24 0 147 100"><rect x="5" y="15" width="90" height="85" rx="3" fill="#161630" stroke="rgba(244,168,67,0.15)" stroke-width="0.6"/><rect x="5" y="15" width="90" height="8" fill="rgba(16,217,160,0.2)" rx="3"/><rect x="18" y="35" width="16" height="18" rx="2" fill="rgba(16,217,160,0.2)"/><rect x="42" y="35" width="16" height="18" rx="2" fill="rgba(16,217,160,0.15)"/><rect x="66" y="35" width="16" height="18" rx="2" fill="rgba(16,217,160,0.2)"/><rect x="18" y="62" width="16" height="18" rx="2" fill="rgba(16,217,160,0.12)"/><rect x="42" y="62" width="16" height="18" rx="2" fill="rgba(16,217,160,0.18)"/><rect x="66" y="62" width="16" height="18" rx="2" fill="rgba(16,217,160,0.12)"/><rect x="36" y="85" width="28" height="15" rx="2" fill="rgba(244,168,67,0.3)"/></svg></div>
+        <div class="office-label">
+          <span class="ol-name">Profit Plug</span>
+          <span class="ol-desc">CAC ↓28%, CVR 1.6→2.7%</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════ ARISVA — 2025 ═══════ -->
+    <div class="zone" style="left: 5900px">
+      <div class="shop">
+        <div class="bldg-logo"><img src="/assets/logos/arisva.png" alt="Arisva" class="logo-img" /></div>
+        <svg viewBox="0 -14 240 164" class="shop-svg">
+          <rect x="10" y="30" width="220" height="120" rx="3" fill="#161630" stroke="rgba(244,168,67,0.15)" stroke-width="0.6"/>
+          <polygon points="0,35 120,0 240,35" fill="#1a1a38" stroke="var(--accent)" stroke-width="0.8" opacity="0.6"/>
+          <text x="120" y="25" text-anchor="middle" fill="var(--accent)" font-size="12" font-family="var(--font-sans)" font-weight="600">ARISVA</text>
+          <rect x="25" y="50" width="30" height="45" rx="3" fill="rgba(244,168,67,0.12)"/>
+          <rect x="65" y="50" width="30" height="45" rx="3" fill="rgba(244,168,67,0.15)"/>
+          <rect x="105" y="50" width="30" height="45" rx="3" fill="rgba(244,168,67,0.12)"/>
+          <rect x="145" y="50" width="30" height="45" rx="3" fill="rgba(244,168,67,0.15)"/>
+          <rect x="185" y="50" width="30" height="45" rx="3" fill="rgba(244,168,67,0.12)"/>
+          <!-- Arisva product boxes in windows -->
+          <defs>
+            <clipPath id="w1"><rect x="27" y="52" width="26" height="40" rx="2"/></clipPath>
+            <clipPath id="w2"><rect x="67" y="52" width="26" height="40" rx="2"/></clipPath>
+            <clipPath id="w3"><rect x="107" y="52" width="26" height="40" rx="2"/></clipPath>
+            <clipPath id="w4"><rect x="147" y="52" width="26" height="40" rx="2"/></clipPath>
+            <clipPath id="w5"><rect x="187" y="52" width="26" height="40" rx="2"/></clipPath>
+          </defs>
+          <image href="/assets/arisva-chandan.jpg" x="27" y="52" width="26" height="40" clip-path="url(#w1)" preserveAspectRatio="xMidYMid slice"/>
+          <image href="/assets/arisva-ashtgandh.jpg" x="67" y="52" width="26" height="40" clip-path="url(#w2)" preserveAspectRatio="xMidYMid slice"/>
+          <image href="/assets/arisva-patchouli.jpg" x="107" y="52" width="26" height="40" clip-path="url(#w3)" preserveAspectRatio="xMidYMid slice"/>
+          <image href="/assets/arisva-oudh.jpg" x="147" y="52" width="26" height="40" clip-path="url(#w4)" preserveAspectRatio="xMidYMid slice"/>
+          <image href="/assets/arisva-kastoor.jpg" x="187" y="52" width="26" height="40" clip-path="url(#w5)" preserveAspectRatio="xMidYMid slice"/>
+          <rect x="85" y="110" width="70" height="40" rx="2" fill="rgba(244,168,67,0.2)"/>
+        </svg>
+        <div class="shop-info">
+          <span class="si-badge">Founded & Shut Down</span>
+          <span class="si-title">D2C Incense Brand</span>
+          <span class="si-stat">₹3.5L/mo peak · 8 SKUs · Solo founder</span>
+          <span class="si-lesson">"Traction isn't a business model"</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="tree" style="left: 6300px"><svg viewBox="0 0 40 55"><circle cx="20" cy="14" r="14" fill="rgba(15,15,26,0.6)"/><rect x="18" y="26" width="4" height="29" fill="rgba(15,15,26,0.7)"/></svg></div>
+
+    <!-- ═══════ BITS PILANI — 2025 (FEATURED) ═══════ -->
+    <div class="zone" style="left: 6600px">
+      <div class="building">
+        <div class="bldg-logo"><img src="/assets/logos/bits-pilani.png" alt="BITS Pilani" class="logo-img" /></div>
+        <svg viewBox="-17 0 294 200" class="campus-svg">
+          <rect x="10" y="70" width="70" height="130" rx="2" fill="#161630"/>
+          <rect x="10" y="70" width="70" height="130" rx="2" fill="none" stroke="rgba(244,168,67,0.15)" stroke-width="0.6"/>
+          <rect x="10" y="70" width="70" height="6" fill="rgba(244,168,67,0.2)" rx="2"/>
+          <rect x="20" y="85" width="16" height="22" rx="2" fill="rgba(244,168,67,0.25)"/>
+          <rect x="44" y="85" width="16" height="22" rx="2" fill="rgba(244,168,67,0.2)"/>
+          <rect x="20" y="118" width="16" height="22" rx="2" fill="rgba(244,168,67,0.2)"/>
+          <rect x="44" y="118" width="16" height="22" rx="2" fill="rgba(244,168,67,0.25)"/>
+          <rect x="20" y="155" width="16" height="22" rx="2" fill="rgba(244,168,67,0.15)"/>
+          <rect x="44" y="155" width="16" height="22" rx="2" fill="rgba(244,168,67,0.2)"/>
+          <rect x="180" y="70" width="70" height="130" rx="2" fill="#161630"/>
+          <rect x="180" y="70" width="70" height="130" rx="2" fill="none" stroke="rgba(244,168,67,0.15)" stroke-width="0.6"/>
+          <rect x="180" y="70" width="70" height="6" fill="rgba(244,168,67,0.2)" rx="2"/>
+          <rect x="192" y="85" width="16" height="22" rx="2" fill="rgba(244,168,67,0.2)"/>
+          <rect x="218" y="85" width="16" height="22" rx="2" fill="rgba(244,168,67,0.25)"/>
+          <rect x="192" y="118" width="16" height="22" rx="2" fill="rgba(244,168,67,0.25)"/>
+          <rect x="218" y="118" width="16" height="22" rx="2" fill="rgba(244,168,67,0.2)"/>
+          <rect x="192" y="155" width="16" height="22" rx="2" fill="rgba(244,168,67,0.15)"/>
+          <rect x="218" y="155" width="16" height="22" rx="2" fill="rgba(244,168,67,0.2)"/>
+          <rect x="75" y="50" width="110" height="150" rx="3" fill="#1a1a38"/>
+          <rect x="75" y="50" width="110" height="150" rx="3" fill="none" stroke="rgba(244,168,67,0.25)" stroke-width="0.8"/>
+          <ellipse cx="130" cy="50" rx="40" ry="25" fill="#1e1e40" stroke="var(--accent)" stroke-width="0.8" opacity="0.7"/>
+          <line x1="130" y1="20" x2="130" y2="28" stroke="var(--accent)" stroke-width="1.5" opacity="0.7"/>
+          <circle cx="130" cy="18" r="3" fill="var(--accent)" opacity="0.6"/>
+          <rect x="88" y="60" width="5" height="100" fill="rgba(244,168,67,0.12)" rx="1"/>
+          <rect x="108" y="60" width="5" height="100" fill="rgba(244,168,67,0.12)" rx="1"/>
+          <rect x="148" y="60" width="5" height="100" fill="rgba(244,168,67,0.12)" rx="1"/>
+          <rect x="168" y="60" width="5" height="100" fill="rgba(244,168,67,0.12)" rx="1"/>
+          <rect x="98" y="70" width="14" height="20" rx="2" fill="rgba(244,168,67,0.3)"/>
+          <rect x="123" y="70" width="14" height="20" rx="2" fill="rgba(244,168,67,0.35)"/>
+          <rect x="148" y="70" width="14" height="20" rx="2" fill="rgba(244,168,67,0.3)"/>
+          <rect x="98" y="105" width="14" height="20" rx="2" fill="rgba(244,168,67,0.25)"/>
+          <rect x="123" y="105" width="14" height="20" rx="2" fill="rgba(244,168,67,0.3)"/>
+          <rect x="148" y="105" width="14" height="20" rx="2" fill="rgba(244,168,67,0.25)"/>
+          <path d="M112,200 L112,155 Q130,140 148,155 L148,200" fill="rgba(244,168,67,0.3)" stroke="var(--accent)" stroke-width="0.6" opacity="0.6"/>
+          <rect x="100" y="195" width="60" height="5" rx="1" fill="rgba(244,168,67,0.1)"/>
+        </svg>
+        <div class="building-label accent-label">
+          <span class="bl-title">BITS Pilani</span>
+          <span class="bl-sub">MBA, Business Analytics · 8.75 CGPA</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="lamp" style="left: 7050px"><svg viewBox="0 0 20 80"><rect x="9" y="10" width="2" height="70" fill="rgba(244,168,67,0.3)"/><circle cx="10" cy="8" r="5" fill="var(--accent)" opacity="0.8"/><circle cx="10" cy="8" r="15" fill="var(--accent)" opacity="0.08"/></svg></div>
+
+    <!-- ═══════ YOVANCE — 2026 ═══════ -->
+    <div class="zone" style="left: 7300px">
+      <div class="launchpad">
+        <div class="bldg-logo"><img src="/assets/logos/yovance.svg" alt="Yovance" class="logo-img logo-no-bg" /></div>
+        <svg viewBox="0 -11 280 191" class="launchpad-svg">
+          <rect x="20" y="30" width="240" height="150" rx="4" fill="#161630" stroke="var(--accent)" stroke-width="0.5" opacity="0.8"/>
+          <rect x="20" y="30" width="240" height="16" rx="4" fill="var(--accent)" opacity="0.2"/>
+          <text x="140" y="43" text-anchor="middle" fill="var(--accent)" font-size="10" font-family="var(--font-sans)" font-weight="600" letter-spacing="2">YOVANCE</text>
+          <rect x="40" y="60" width="60" height="100" rx="3" fill="rgba(108,51,255,0.15)" stroke="rgba(108,51,255,0.3)" stroke-width="0.5"/>
+          <text x="70" y="80" text-anchor="middle" fill="#6C33FF" font-size="9" font-family="var(--font-sans)" font-weight="600">GROW</text>
+          <rect x="110" y="60" width="60" height="100" rx="3" fill="rgba(16,217,160,0.15)" stroke="rgba(16,217,160,0.3)" stroke-width="0.5"/>
+          <text x="140" y="80" text-anchor="middle" fill="#10D9A0" font-size="9" font-family="var(--font-sans)" font-weight="600">AUTO</text>
+          <rect x="180" y="60" width="60" height="100" rx="3" fill="rgba(74,158,255,0.15)" stroke="rgba(74,158,255,0.3)" stroke-width="0.5"/>
+          <text x="210" y="80" text-anchor="middle" fill="#4A9EFF" font-size="9" font-family="var(--font-sans)" font-weight="600">DECIDE</text>
+        </svg>
+        <div class="launchpad-info">
+          <span class="lp-title">AI Growth & Automation Studio</span>
+          <span class="lp-sub">Co-founded with Harshita Sevaldasani</span>
+          <span class="lp-desc">One partner instead of five vendors. SEO, content, automation, data. All connected.</span>
+          <a href="https://yovance.pro" target="_blank" rel="noopener" class="lp-link">yovance.pro →</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="lamp" style="left: 7900px"><svg viewBox="0 0 20 80"><rect x="9" y="10" width="2" height="70" fill="rgba(244,168,67,0.3)"/><circle cx="10" cy="8" r="5" fill="var(--accent)" opacity="0.8"/><circle cx="10" cy="8" r="15" fill="var(--accent)" opacity="0.08"/></svg></div>
+
+    <!-- ═══════ SKILLS — BILLBOARDS ═══════ -->
+    <div class="zone zone-skills" style="left: 8100px">
+      <div class="skills-heading">
+        <span class="sh-title">Skills & Toolkit</span>
+      </div>
+      <div class="billboard" style="left: 0">
+        <div class="bb-frame">
+          <div class="bb-header">Technical</div>
+          <div class="bb-tags">
+            <span>Python</span><span>SQL</span><span>Pandas</span><span>MongoDB</span>
+            <span>Power BI</span><span>Excel</span><span>NumPy</span><span>Sklearn</span>
+          </div>
+        </div>
+        <div class="bb-post-l"></div>
+        <div class="bb-post-r"></div>
+      </div>
+      <div class="billboard" style="left: 310px">
+        <div class="bb-frame">
+          <div class="bb-header">Domain</div>
+          <div class="bb-tags">
+            <span>A/B Testing</span><span>Cohort Analysis</span><span>RFM</span>
+            <span>Meta Ads</span><span>ROAS</span><span>CRO</span>
+            <span>LLM Eval</span><span>Prompt Eng</span><span>NLP</span>
+          </div>
+        </div>
+        <div class="bb-post-l"></div>
+        <div class="bb-post-r"></div>
+      </div>
+    </div>
+
+    <div class="tree" style="left: 8800px"><svg viewBox="0 0 50 70"><circle cx="25" cy="18" r="18" fill="rgba(15,15,26,0.65)"/><rect x="23" y="34" width="4" height="36" fill="rgba(15,15,26,0.75)"/></svg></div>
+
+    <!-- ═══════ BEYOND WORK ═══════ -->
+    <div class="zone zone-beyond" style="left: 9100px">
+      <!-- Book -->
+      <div class="bookshelf">
+        <div class="book-display">
+          <img src="/assets/book-cover.jpg" alt="Eleven Seconds" class="book-img" />
+        </div>
+        <div class="book-info">
+          <span class="bi-title">Eleven Seconds</span>
+          <span class="bi-sub">Fifteen Stages of Love, Told Through Fifteen Old Songs</span>
+          <span class="bi-desc">Part memoir, part meditation, entirely human.</span>
+        </div>
+      </div>
+      <!-- Interest cards -->
+      <div class="interest-grid">
+        <div class="interest-card">
+          <svg viewBox="0 0 50 50" class="ic-icon"><path d="M25 5 L30 18 L20 18Z" fill="rgba(244,168,67,0.5)"/><path d="M25 2 L33 22 L17 22Z" fill="none" stroke="var(--accent)" stroke-width="1" opacity="0.6"/><path d="M15 22 L25 10 L35 22" fill="none" stroke="rgba(244,168,67,0.3)" stroke-width="0.8"/><path d="M10 35 L25 15 L40 35" fill="none" stroke="rgba(244,168,67,0.4)" stroke-width="1"/><path d="M5 48 L25 20 L45 48" fill="rgba(15,15,26,0.6)" stroke="rgba(244,168,67,0.3)" stroke-width="0.8"/><line x1="25" y1="48" x2="25" y2="35" stroke="var(--accent)" stroke-width="0.8" stroke-dasharray="2,2" opacity="0.5"/></svg>
+          <span class="ic-title">Trekking</span>
+          <span class="ic-desc">Mountains teach what books can't</span>
+        </div>
+        <div class="interest-card">
+          <svg viewBox="0 0 50 50" class="ic-icon"><rect x="20" y="30" width="10" height="18" rx="1" fill="rgba(108,51,255,0.15)" stroke="rgba(108,51,255,0.3)" stroke-width="0.5"/><ellipse cx="25" cy="22" rx="12" ry="10" fill="rgba(16,217,160,0.15)" stroke="rgba(16,217,160,0.4)" stroke-width="0.8"/><ellipse cx="20" cy="18" rx="7" ry="6" fill="rgba(16,217,160,0.1)" stroke="rgba(16,217,160,0.3)" stroke-width="0.5"/><ellipse cx="30" cy="19" rx="6" ry="5" fill="rgba(16,217,160,0.1)" stroke="rgba(16,217,160,0.3)" stroke-width="0.5"/><circle cx="22" cy="20" r="1" fill="rgba(244,168,67,0.4)"/><circle cx="28" cy="18" r="1" fill="rgba(244,168,67,0.4)"/><circle cx="25" cy="24" r="1.5" fill="rgba(244,168,67,0.5)"/></svg>
+          <span class="ic-title">Gardening</span>
+          <span class="ic-desc">Patience, rooted in soil</span>
+        </div>
+        <div class="interest-card">
+          <svg viewBox="0 0 50 50" class="ic-icon"><line x1="25" y1="5" x2="25" y2="35" stroke="var(--accent)" stroke-width="1.2" opacity="0.6"/><circle cx="25" cy="5" r="2.5" fill="none" stroke="var(--accent)" stroke-width="0.8" opacity="0.5"/><ellipse cx="25" cy="38" rx="15" ry="4" fill="none" stroke="rgba(244,168,67,0.3)" stroke-width="0.8"/><path d="M18 35 C18 28 25 25 25 18" fill="none" stroke="rgba(108,51,255,0.4)" stroke-width="0.8"/><path d="M32 35 C32 28 25 25 25 18" fill="none" stroke="rgba(74,158,255,0.4)" stroke-width="0.8"/><circle cx="15" cy="42" r="1" fill="var(--accent)" opacity="0.3"/><circle cx="35" cy="42" r="1" fill="var(--accent)" opacity="0.3"/><circle cx="25" cy="46" r="1.5" fill="var(--accent)" opacity="0.4"/></svg>
+          <span class="ic-title">Mythology & Science</span>
+          <span class="ic-desc">Hindu epics through a modern lens, where Lord Shiv meets quantum physics</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="tree" style="left: 10100px"><svg viewBox="0 0 40 60"><circle cx="20" cy="15" r="15" fill="rgba(15,15,26,0.6)"/><rect x="18" y="28" width="4" height="32" fill="rgba(15,15,26,0.7)"/></svg></div>
+    <div class="lamp" style="left: 10400px"><svg viewBox="0 0 20 80"><rect x="9" y="10" width="2" height="70" fill="rgba(244,168,67,0.3)"/><circle cx="10" cy="8" r="5" fill="var(--accent)" opacity="0.8"/><circle cx="10" cy="8" r="15" fill="var(--accent)" opacity="0.08"/></svg></div>
+
+    <!-- ═══════ CONTACT ═══════ -->
+    <div class="zone zone-contact" style="left: 10600px">
+      <div class="contact-end">
+        <h2 class="ce-title">Let's <span class="accent">connect</span></h2>
+        <div class="ce-links">
+          <a href="mailto:ayushsaxena7777@gmail.com" class="ce-link">Email</a>
+          <a href="https://linkedin.com/in/ayushsaxena7777" target="_blank" rel="noopener" class="ce-link">LinkedIn</a>
+          <a href="https://yovance.pro" target="_blank" rel="noopener" class="ce-link">Yovance</a>
+        </div>
+        <p class="ce-note">Thanks for scrolling through my world.</p>
+      </div>
+      <div class="end-flag">
+        <svg viewBox="0 0 40 100"><rect x="18" y="0" width="3" height="100" fill="var(--accent)" opacity="0.5"/><rect x="21" y="5" width="35" height="22" rx="2" fill="var(--accent)" opacity="0.8"/><text x="38" y="20" text-anchor="middle" fill="var(--ground)" font-size="8" font-family="var(--font-sans)" font-weight="700">FIN</text></svg>
+      </div>
+    </div>
+
+  </div><!-- /world-layer -->
+
+  <!-- Character -->
+  <div class="character" id="character">
+    <div class="char-shadow"></div>
+    <img src="/assets/avatar-school.png" alt="Ayush Saxena" class="char-img" id="charImg" />
+  </div>
+
+  <!-- Nav -->
+  <nav class="game-nav" id="gameNav">
+    <span class="gn-logo">AS</span>
+    <div class="gn-links">
+      <button class="gn-btn" data-target="0">Start</button>
+      <button class="gn-btn" data-target="0.21">2017</button>
+      <button class="gn-btn" data-target="0.27">2021</button>
+      <button class="gn-btn" data-target="0.34">2022</button>
+      <button class="gn-btn" data-target="0.40">2023</button>
+      <button class="gn-btn" data-target="0.46">2024</button>
+      <button class="gn-btn" data-target="0.52">2025</button>
+      <button class="gn-btn" data-target="0.65">2026</button>
+      <button class="gn-btn" data-target="0.72">Skills</button>
+      <button class="gn-btn" data-target="0.81">Beyond</button>
+      <button class="gn-btn" data-target="1">Contact</button>
+    </div>
+  </nav>
+
+  <!-- Progress bar -->
+  <div class="progress-bar">
+    <div class="progress-fill" id="progressFill"></div>
+  </div>
+
+</div><!-- /game-viewport -->
+
+<!-- Scroll spacer -->
+<div class="scroll-spacer" id="scrollSpacer"></div>
+
+<!-- ═══════ MOBILE LAYOUT ═══════ -->
+<div class="mobile-layout">
+  <!-- Hero -->
+  <section class="m-hero">
+    <div class="m-stars">
+      {Array.from({ length: 20 }).map((_, i) => (
+        <span class="star" style={`left:${Math.random()*100}%;top:${Math.random()*60}%;animation-delay:${Math.random()*3}s;opacity:${0.3+Math.random()*0.7}`}></span>
+      ))}
+    </div>
+    <img src="/assets/avatar-casual.png" alt="Ayush Saxena" class="m-avatar" />
+    <p class="m-pre">Interactive Portfolio of</p>
+    <h1 class="m-name">Ayush <span class="accent">Saxena</span></h1>
+    <p class="m-tagline">Builder · Analyst · Author</p>
+  </section>
+
+  <!-- Timeline -->
+  <section class="m-section">
+    <h2 class="m-section-title">Origins</h2>
+    <p class="m-section-sub">Curiosity turned into code</p>
+    <div class="m-timeline">
+      <div class="m-tl-item">
+        <span class="m-tl-dot"></span>
+        <div class="m-tl-card">
+          <span class="m-tl-name">Childhood</span>
+          <span class="m-tl-desc">Fascinated by video games. How do they work?</span>
+        </div>
+      </div>
+      <div class="m-tl-item">
+        <span class="m-tl-dot"></span>
+        <div class="m-tl-card">
+          <span class="m-tl-name">Class 8</span>
+          <span class="m-tl-desc">Built a graphic game from scratch</span>
+        </div>
+      </div>
+      <div class="m-tl-item">
+        <span class="m-tl-dot accent-dot"></span>
+        <div class="m-tl-card">
+          <span class="m-tl-year-badge">2017</span>
+          <img src="/assets/logos/jiit.png" alt="JIIT" class="m-tl-logo" />
+          <span class="m-tl-name">JIIT Noida</span>
+          <span class="m-tl-desc">BTech, Computer Science (2017-2021)</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="m-section">
+    <h2 class="m-section-title">Corporate Years</h2>
+    <p class="m-section-sub">Learning to build at scale</p>
+    <div class="m-timeline">
+      <div class="m-tl-item">
+        <span class="m-tl-dot accent-dot"></span>
+        <div class="m-tl-card">
+          <span class="m-tl-year-badge">2021</span>
+          <img src="/assets/logos/cognizant.png" alt="Cognizant" class="m-tl-logo" />
+          <span class="m-tl-name">Cognizant</span>
+          <span class="m-tl-desc">Cut regression testing by 98%</span>
+        </div>
+      </div>
+      <div class="m-tl-item">
+        <span class="m-tl-dot accent-dot"></span>
+        <div class="m-tl-card">
+          <span class="m-tl-year-badge">2022</span>
+          <img src="/assets/logos/tiger-analytics.webp" alt="Tiger Analytics" class="m-tl-logo" />
+          <span class="m-tl-name">Tiger Analytics</span>
+          <span class="m-tl-desc">Supply chain analytics, EMEA & NA</span>
+        </div>
+      </div>
+      <div class="m-tl-item">
+        <span class="m-tl-dot accent-dot"></span>
+        <div class="m-tl-card">
+          <span class="m-tl-year-badge">2023</span>
+          <span class="m-tl-name">AI Trainer</span>
+          <span class="m-tl-desc">Outlier / Deccan AI</span>
+        </div>
+      </div>
+      <div class="m-tl-item">
+        <span class="m-tl-dot accent-dot"></span>
+        <div class="m-tl-card">
+          <span class="m-tl-year-badge">2024</span>
+          <img src="/assets/logos/profit-plug.png" alt="Profit Plug" class="m-tl-logo" />
+          <span class="m-tl-name">Profit Plug</span>
+          <span class="m-tl-desc">CAC ↓28%, CVR 1.6→2.7%</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="m-section">
+    <h2 class="m-section-title">Founder Arc</h2>
+    <p class="m-section-sub">Building, breaking, learning</p>
+    <div class="m-timeline">
+      <div class="m-tl-item">
+        <span class="m-tl-dot accent-dot"></span>
+        <div class="m-tl-card m-tl-featured">
+          <span class="m-tl-year-badge">2025</span>
+          <img src="/assets/logos/arisva.png" alt="Arisva" class="m-tl-logo" />
+          <span class="m-tl-name">Arisva</span>
+          <span class="m-tl-badge">Founded & Shut Down</span>
+          <span class="m-tl-desc">D2C Incense Brand · ₹3.5L/mo peak · 8 SKUs · Solo founder</span>
+          <div class="m-arisva-boxes">
+            <img src="/assets/arisva-chandan.jpg" alt="Chandan" />
+            <img src="/assets/arisva-ashtgandh.jpg" alt="Ashtgandh" />
+            <img src="/assets/arisva-patchouli.jpg" alt="Patchouli" />
+            <img src="/assets/arisva-oudh.jpg" alt="Oudh" />
+            <img src="/assets/arisva-kastoor.jpg" alt="Kastoor" />
+          </div>
+          <span class="m-tl-lesson">"Traction isn't a business model"</span>
+        </div>
+      </div>
+      <div class="m-tl-item">
+        <span class="m-tl-dot accent-dot"></span>
+        <div class="m-tl-card m-tl-featured">
+          <span class="m-tl-year-badge">2025</span>
+          <img src="/assets/logos/bits-pilani.png" alt="BITS Pilani" class="m-tl-logo" />
+          <span class="m-tl-name">BITS Pilani</span>
+          <span class="m-tl-desc">MBA, Business Analytics · 8.75 CGPA</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="m-section">
+    <h2 class="m-section-title">Now</h2>
+    <p class="m-section-sub">Everything connects here</p>
+    <div class="m-yovance-card">
+      <img src="/assets/logos/yovance.svg" alt="Yovance" class="m-yov-logo" />
+      <span class="m-yov-title">Yovance</span>
+      <span class="m-yov-sub">AI Growth & Automation Studio</span>
+      <span class="m-yov-desc">Co-founded with Harshita Sevaldasani</span>
+      <div class="m-yov-pillars">
+        <span class="m-pill grow">Grow</span>
+        <span class="m-pill auto">Automate</span>
+        <span class="m-pill decide">Decide</span>
+      </div>
+      <span class="m-yov-body">One partner instead of five vendors. SEO, content, automation, data. All connected.</span>
+      <a href="https://yovance.pro" target="_blank" rel="noopener" class="m-yov-link">yovance.pro →</a>
+    </div>
+  </section>
+
+  <!-- Skills -->
+  <section class="m-section">
+    <h2 class="m-section-title">Skills & Toolkit</h2>
+    <div class="m-skills-group">
+      <h3 class="m-sg-title">Technical</h3>
+      <div class="m-tags">
+        <span>Python</span><span>SQL</span><span>Pandas</span><span>MongoDB</span>
+        <span>Power BI</span><span>Excel</span><span>NumPy</span><span>Sklearn</span>
+      </div>
+    </div>
+    <div class="m-skills-group">
+      <h3 class="m-sg-title">Domain</h3>
+      <div class="m-tags">
+        <span>A/B Testing</span><span>Cohort Analysis</span><span>RFM</span>
+        <span>Meta Ads</span><span>ROAS</span><span>CRO</span>
+        <span>LLM Eval</span><span>Prompt Eng</span><span>NLP</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Beyond Work -->
+  <section class="m-section">
+    <h2 class="m-section-title">Beyond the Code</h2>
+    <p class="m-section-sub">The human behind the data</p>
+
+    <div class="m-book-card">
+      <img src="/assets/book-cover.jpg" alt="Eleven Seconds" class="m-book-img" />
+      <div class="m-book-info">
+        <span class="m-book-title">Eleven Seconds</span>
+        <span class="m-book-sub">Fifteen Stages of Love, Told Through Fifteen Old Songs</span>
+      </div>
+    </div>
+
+    <div class="m-interests">
+      <div class="m-int-card">
+        <span class="m-int-icon">⛰</span>
+        <span class="m-int-name">Trekking</span>
+        <span class="m-int-desc">Mountains teach what books can't</span>
+      </div>
+      <div class="m-int-card">
+        <span class="m-int-icon">🌱</span>
+        <span class="m-int-name">Gardening</span>
+        <span class="m-int-desc">Patience, rooted in soil</span>
+      </div>
+      <div class="m-int-card">
+        <span class="m-int-icon">🔱</span>
+        <span class="m-int-name">Mythology & Science</span>
+        <span class="m-int-desc">Hindu epics through a modern lens, where Lord Shiv meets quantum physics</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section class="m-section m-contact">
+    <h2 class="m-section-title">Let's <span class="accent">connect</span></h2>
+    <div class="m-contact-links">
+      <a href="mailto:ayushsaxena7777@gmail.com" class="m-clink">Email</a>
+      <a href="https://linkedin.com/in/ayushsaxena7777" target="_blank" rel="noopener" class="m-clink">LinkedIn</a>
+      <a href="https://yovance.pro" target="_blank" rel="noopener" class="m-clink">Yovance</a>
+    </div>
+    <p class="m-footer">Thanks for scrolling through my world.</p>
+  </section>
+</div>
+
+<style>
+  .game-viewport {
+    position: fixed;
+    inset: 0;
+    overflow: hidden;
+  }
+
+  /* Sky */
+  .sky {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, var(--sky-night) 0%, #1a1040 50%, #2a1a50 100%);
+    transition: none;
+  }
+
+  /* Stars */
+  .stars { position: absolute; inset: 0; pointer-events: none; }
+  .star {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: #fff;
+    border-radius: 50%;
+    animation: twinkle 3s ease-in-out infinite;
+  }
+  @keyframes twinkle {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 1; }
+  }
+
+  /* Parallax */
+  .parallax-far, .parallax-mid {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 100%;
+    will-change: transform;
+  }
+  .mountains { width: 6000px; height: 300px; position: absolute; bottom: 100px; }
+  .cityscape { width: 8000px; height: 250px; position: absolute; bottom: 80px; }
+
+  /* World */
+  .world-layer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 11300px;
+    height: 100%;
+    will-change: transform;
+  }
+
+  /* Ground */
+  .ground {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100px;
+    background: var(--ground);
+  }
+  .ground-line {
+    position: absolute;
+    bottom: 100px;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--accent-dim), var(--accent), var(--accent-dim), transparent);
+    opacity: 0.3;
+  }
+
+  /* ═══ TIMELINE RAIL ═══ */
+  .timeline-rail {
+    position: absolute;
+    bottom: 63px;
+    left: 0;
+    width: 100%;
+    height: 50px;
+    pointer-events: none;
+  }
+  .tl-line {
+    position: absolute;
+    bottom: 3px;
+    left: 1200px;
+    right: 400px;
+    height: 2px;
+    background: linear-gradient(to right, transparent, rgba(244,168,67,0.3) 5%, rgba(244,168,67,0.3) 95%, transparent);
+  }
+  .tl-marker {
+    position: absolute;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transform: translateX(-50%);
+  }
+  .tl-year {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    color: var(--text-muted);
+    margin-bottom: 6px;
+    font-family: var(--font-sans);
+  }
+  .tl-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(244,168,67,0.4);
+    border: 1.5px solid var(--accent);
+    box-shadow: 0 0 8px rgba(244,168,67,0.2);
+  }
+  .accent-marker .tl-year { color: var(--accent); }
+  .accent-marker .tl-dot {
+    background: var(--accent);
+    box-shadow: 0 0 12px rgba(244,168,67,0.4);
+  }
+
+  /* ═══ SECTION LABELS ═══ */
+  .section-label {
+    position: absolute;
+    bottom: 360px;
+    transform: translateX(-50%);
+    text-align: center;
+    pointer-events: none;
+  }
+  .sl-title {
+    display: block;
+    font-family: var(--font-serif);
+    font-size: 1.5rem;
+    font-style: italic;
+    color: var(--text-secondary);
+    opacity: 0.6;
+  }
+  .sl-sub {
+    display: block;
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    margin-top: 4px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  /* Zones */
+  .zone {
+    position: absolute;
+    bottom: 110px;
+  }
+
+  /* Hero */
+  .zone-hero { bottom: 120px; }
+  .hero-title { max-width: 500px; }
+  .hero-pre {
+    font-family: var(--font-serif);
+    font-style: italic;
+    color: var(--text-secondary);
+    font-size: 1rem;
+    margin-bottom: 8px;
+  }
+  .hero-name {
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    font-weight: 700;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    margin-bottom: 16px;
+  }
+  .accent { color: var(--accent); }
+  .hero-sub {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+  }
+
+  /* Signpost */
+  .signpost { position: absolute; bottom: 0; }
+  .sign-arrow {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    color: var(--accent);
+    font-weight: 500;
+    white-space: nowrap;
+    animation: bobSign 2s ease-in-out infinite;
+  }
+  @keyframes bobSign {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+  }
+  .sign-pole {
+    width: 2px;
+    height: 50px;
+    background: var(--accent);
+    opacity: 0.4;
+    margin: 0 auto;
+  }
+
+  /* Trees & lamps */
+  .tree, .lamp {
+    position: absolute;
+    bottom: 100px;
+  }
+  .tree svg { width: 50px; height: 70px; }
+  .lamp svg { width: 20px; height: 80px; }
+
+  /* ═══ BUILDING LOGOS ═══ */
+  .bldg-logo {
+    text-align: center;
+    margin-bottom: 8px;
+  }
+  .logo-img {
+    height: 42px;
+    width: auto;
+    max-width: 150px;
+    margin: 0 auto;
+    object-fit: contain;
+    background: rgba(255,255,255,0.92);
+    padding: 6px 12px;
+    border-radius: 6px;
+  }
+  .logo-no-bg {
+    background: none;
+    padding: 0;
+    filter: drop-shadow(0 0 6px rgba(198,242,78,0.3));
+  }
+
+  /* ═══ UNIFIED STRUCTURES ═══ */
+  .building, .office, .shop, .launchpad {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+  }
+
+  .office-building { display: contents; }
+
+  .building svg,
+  .office-building svg,
+  .office > svg,
+  .shop-svg,
+  .launchpad-svg {
+    width: 220px;
+  }
+
+  .bldg-logo .logo-img {
+    height: 42px;
+  }
+  .bldg-logo .logo-no-bg {
+    height: 42px;
+  }
+
+  .building-label,
+  .office-label,
+  .shop-info,
+  .launchpad-info {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: max-content;
+    max-width: 260px;
+    padding-top: 10px;
+  }
+
+  .bl-title, .ol-name {
+    display: block;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+  }
+  .bl-sub, .ol-desc {
+    display: block;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    margin-top: 3px;
+  }
+  .accent-label .bl-title { color: var(--accent); }
+
+  .si-badge {
+    display: block;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 4px;
+  }
+  .si-title {
+    display: block;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+  }
+  .si-stat {
+    display: block;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    margin: 4px 0;
+  }
+  .si-lesson {
+    display: block;
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 0.9rem;
+    color: var(--accent);
+    margin-top: 6px;
+  }
+
+  .lp-title {
+    display: block;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+  }
+  .lp-sub {
+    display: block;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    margin: 4px 0;
+  }
+  .lp-desc {
+    display: block;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+    margin-bottom: 8px;
+  }
+  .lp-link {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--accent);
+  }
+
+  /* ═══ BILLBOARDS (SKILLS) ═══ */
+  .billboard {
+    position: absolute;
+    bottom: 0;
+  }
+  .bb-frame {
+    width: 260px;
+    background: #161630;
+    border: 1.5px solid rgba(244,168,67,0.25);
+    border-radius: 6px;
+    padding: 14px 16px 16px;
+    position: relative;
+  }
+  .bb-header {
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 10px;
+    text-align: center;
+    padding-bottom: 8px;
+    border-bottom: 1px solid rgba(244,168,67,0.15);
+  }
+  .bb-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    justify-content: center;
+  }
+  .bb-tags span {
+    padding: 5px 12px;
+    background: rgba(244,168,67,0.08);
+    border: 1px solid rgba(244,168,67,0.15);
+    border-radius: 16px;
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    white-space: nowrap;
+  }
+  .bb-post-l, .bb-post-r {
+    position: absolute;
+    bottom: -50px;
+    width: 4px;
+    height: 50px;
+    background: rgba(244,168,67,0.2);
+    border-radius: 2px;
+  }
+  .bb-post-l { left: 30px; }
+  .bb-post-r { right: 30px; }
+
+  /* Skills heading */
+  .skills-heading {
+    position: absolute;
+    bottom: 260px;
+    left: 285px;
+    transform: translateX(-50%);
+    text-align: center;
+    width: max-content;
+  }
+  .sh-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    letter-spacing: 0.05em;
+  }
+
+  /* ═══ BEYOND WORK ═══ */
+  .zone-beyond {
+    display: flex;
+    align-items: flex-end;
+    gap: 40px;
+  }
+  .interest-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .interest-card {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 280px;
+    background: rgba(22, 22, 48, 0.85);
+    border: 1px solid rgba(244, 168, 67, 0.12);
+    border-radius: 8px;
+    padding: 12px 14px;
+  }
+  .ic-icon {
+    width: 40px;
+    height: 40px;
+    flex-shrink: 0;
+  }
+  .ic-title {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 2px;
+  }
+  .ic-desc {
+    display: block;
+    font-size: 0.7rem;
+    color: var(--text-secondary);
+    line-height: 1.4;
+  }
+
+  /* Book */
+  .bookshelf {
+    display: flex;
+    gap: 24px;
+    align-items: flex-end;
+  }
+  .book-display {
+    width: 120px;
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.5);
+  }
+  .book-img { width: 100%; display: block; }
+  .book-info { max-width: 200px; }
+  .bi-title {
+    display: block;
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 1.3rem;
+    color: var(--text-primary);
+    margin-bottom: 6px;
+  }
+  .bi-sub {
+    display: block;
+    font-size: 0.7rem;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+  .bi-desc {
+    display: block;
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+  }
+
+  /* Contact */
+  .zone-contact { text-align: center; padding-left: 50px; }
+  .ce-title {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+  }
+  .ce-links {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 16px;
+    justify-content: center;
+  }
+  .ce-link {
+    padding: 10px 24px;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 8px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--accent);
+    transition: background 0.2s, transform 0.2s;
+  }
+  .ce-link:hover {
+    background: var(--accent-subtle);
+    transform: translateY(-2px);
+  }
+  .ce-note {
+    font-family: var(--font-serif);
+    font-style: italic;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+  }
+  .end-flag {
+    position: absolute;
+    bottom: 0;
+    left: 500px;
+  }
+  .end-flag svg { width: 50px; height: 100px; }
+
+  /* Character */
+  .character {
+    position: absolute;
+    bottom: 100px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .char-img {
+    width: 110px;
+    height: auto;
+    image-rendering: auto;
+  }
+  .char-shadow {
+    position: absolute;
+    bottom: -4px;
+    width: 50px;
+    height: 10px;
+    background: radial-gradient(ellipse, rgba(0,0,0,0.4) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+  .character.walking .char-img {
+    animation: charWalk 0.35s ease-in-out infinite;
+  }
+  .character.walking .char-shadow {
+    animation: shadowPulse 0.35s ease-in-out infinite;
+  }
+
+  @keyframes charWalk {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    25% { transform: translateY(-3px) rotate(1.5deg); }
+    75% { transform: translateY(-3px) rotate(-1.5deg); }
+  }
+  @keyframes shadowPulse {
+    0%, 100% { transform: scaleX(1); opacity: 1; }
+    50% { transform: scaleX(0.85); opacity: 0.7; }
+  }
+
+  .character.jumping .char-img {
+    animation: charJump 0.4s ease-out forwards !important;
+  }
+  .character.jumping .char-shadow {
+    animation: shadowShrink 0.4s ease-out forwards !important;
+  }
+  @keyframes charJump {
+    0% { transform: translateY(0) scaleY(1); }
+    15% { transform: translateY(4px) scaleY(0.9) scaleX(1.05); }
+    45% { transform: translateY(-35px) scaleY(1.05) scaleX(0.95); }
+    70% { transform: translateY(-35px) scaleY(1) scaleX(1); }
+    85% { transform: translateY(3px) scaleY(0.92) scaleX(1.06); }
+    100% { transform: translateY(0) scaleY(1) scaleX(1); }
+  }
+  @keyframes shadowShrink {
+    0% { transform: scaleX(1); opacity: 0.4; }
+    45% { transform: scaleX(0.3); opacity: 0.1; }
+    70% { transform: scaleX(0.3); opacity: 0.1; }
+    100% { transform: scaleX(1); opacity: 0.4; }
+  }
+
+  /* Nav */
+  .game-nav {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 24px;
+    z-index: 20;
+    background: linear-gradient(to bottom, rgba(11,16,38,0.6) 0%, transparent 100%);
+  }
+  .gn-logo {
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: var(--accent);
+  }
+  .gn-links { display: flex; gap: 4px; }
+  .gn-btn {
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    font-family: var(--font-sans);
+    font-size: 0.72rem;
+    font-weight: 500;
+    padding: 6px 10px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: color 0.2s, background 0.2s;
+  }
+  .gn-btn:hover, .gn-btn.active {
+    color: var(--accent);
+    background: var(--accent-subtle);
+  }
+
+  /* Progress bar */
+  .progress-bar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: rgba(255,255,255,0.05);
+    z-index: 20;
+  }
+  .progress-fill {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(to right, var(--accent-dim), var(--accent), var(--sky-glow));
+    transition: width 0.1s;
+  }
+
+  /* Scroll spacer */
+  .scroll-spacer {
+    height: 1050vh;
+    pointer-events: none;
+  }
+
+  /* Mobile layout hidden on desktop */
+  .mobile-layout { display: none; }
+
+  @media (max-width: 768px) {
+    /* Hide static mobile fallback — keep interactive world */
+    .mobile-layout { display: none !important; }
+
+    /* Nav: compact & horizontally scrollable */
+    .game-nav { padding: 8px 10px; }
+    .gn-logo { font-size: 0.9rem; }
+    .gn-links {
+      gap: 1px;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      mask-image: linear-gradient(to right, transparent, black 6px, black calc(100% - 6px), transparent);
+      -webkit-mask-image: linear-gradient(to right, transparent, black 6px, black calc(100% - 6px), transparent);
+    }
+    .gn-links::-webkit-scrollbar { display: none; }
+    .gn-btn { font-size: 0.58rem; padding: 4px 6px; white-space: nowrap; }
+
+    /* Smaller character */
+    .char-img { width: 75px; }
+    .char-shadow { width: 35px; height: 7px; }
+
+    /* Compact ground — content in the sky, avatar walks below */
+    .ground { height: 70px; }
+    .ground-line { bottom: 70px; }
+    .character { bottom: 70px; }
+    .tree, .lamp { bottom: 70px; }
+    .zone { bottom: 52%; }
+    .zone-hero { bottom: 62%; }
+    .timeline-rail { bottom: 33px; }
+    .tl-line { left: 1000px; }
+    .tl-year { font-size: 0.6rem; }
+    .tl-dot { width: 6px; height: 6px; }
+
+    /* Scale down structures — smaller on clouds */
+    .building svg,
+    .office-building svg,
+    .office > svg,
+    .shop-svg,
+    .launchpad-svg { width: 110px; }
+    .logo-img { height: 22px; padding: 2px 6px; border-radius: 4px; }
+    .logo-no-bg { height: 22px; }
+    .bldg-logo { margin-bottom: 4px; }
+
+    /* Cloud platforms under structures — fluffy puffs via box-shadow */
+    .office,
+    .building,
+    .shop,
+    .launchpad { position: relative; }
+
+    .office::before,
+    .building::before,
+    .shop::before,
+    .launchpad::before {
+      content: '';
+      position: absolute;
+      bottom: -12px;
+      left: 50%;
+      width: 55px;
+      height: 20px;
+      background: rgba(195, 205, 235, 0.30);
+      border-radius: 50%;
+      transform: translateX(-50%);
+      box-shadow:
+        -35px -14px 0 16px rgba(195, 205, 235, 0.24),
+        35px -12px 0 14px rgba(195, 205, 235, 0.22),
+        0 -20px 0 20px rgba(195, 205, 235, 0.20),
+        -55px -2px 0 10px rgba(195, 205, 235, 0.18),
+        55px -4px 0 12px rgba(195, 205, 235, 0.16),
+        -18px -28px 0 12px rgba(195, 205, 235, 0.14),
+        18px -26px 0 10px rgba(195, 205, 235, 0.14),
+        -72px 4px 0 4px rgba(195, 205, 235, 0.10),
+        72px 4px 0 4px rgba(195, 205, 235, 0.10),
+        0 0 20px 18px rgba(180, 195, 230, 0.06);
+      z-index: -1;
+      pointer-events: none;
+      animation: cloudFloat 6s ease-in-out infinite;
+    }
+
+    .office::after,
+    .building::after,
+    .shop::after,
+    .launchpad::after {
+      content: '';
+      position: absolute;
+      bottom: -6px;
+      left: 50%;
+      width: 40px;
+      height: 14px;
+      background: rgba(210, 218, 242, 0.18);
+      border-radius: 50%;
+      transform: translateX(-50%);
+      box-shadow:
+        -28px -10px 0 10px rgba(210, 218, 242, 0.13),
+        28px -8px 0 9px rgba(210, 218, 242, 0.11),
+        0 -14px 0 13px rgba(210, 218, 242, 0.10),
+        -48px 2px 0 5px rgba(210, 218, 242, 0.08),
+        48px 2px 0 5px rgba(210, 218, 242, 0.08);
+      z-index: -1;
+      pointer-events: none;
+      animation: cloudFloat 8s ease-in-out infinite;
+    }
+
+    .building::before { width: 65px; height: 24px; }
+    .shop::before { width: 65px; height: 24px; }
+    .launchpad::before { width: 70px; height: 26px; }
+
+    @keyframes cloudFloat {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50% { transform: translateX(-50%) translateY(-6px); }
+    }
+
+    /* Labels */
+    .building-label, .office-label, .shop-info, .launchpad-info { max-width: 160px; }
+    .bl-title, .ol-name { font-size: 0.82rem; }
+    .bl-sub, .ol-desc { font-size: 0.65rem; }
+    .si-badge { font-size: 0.58rem; }
+    .si-title { font-size: 0.85rem; }
+    .si-stat { font-size: 0.68rem; }
+    .si-lesson { font-size: 0.72rem; }
+    .lp-title { font-size: 0.85rem; }
+    .lp-sub { font-size: 0.68rem; }
+    .lp-desc { font-size: 0.65rem; }
+    .lp-link { font-size: 0.72rem; }
+
+    /* Section labels — above content zones */
+    .section-label { bottom: 85%; }
+    .sl-title { font-size: 1rem; }
+    .sl-sub { font-size: 0.6rem; }
+
+    /* Hero */
+    .hero-title { max-width: 260px; }
+    .hero-name { font-size: 1.8rem; }
+    .hero-pre { font-size: 0.8rem; }
+    .hero-sub { font-size: 0.85rem; }
+    .signpost .sign-arrow { font-size: 0.68rem; padding: 6px 12px; }
+    .sign-pole { height: 35px; }
+
+    /* Skills zone — stack billboards vertically on mobile */
+    .zone-skills {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      bottom: auto;
+      top: 55px;
+    }
+    .zone-skills .skills-heading {
+      position: relative;
+      bottom: auto;
+      left: auto;
+      transform: none;
+    }
+    .bb-frame { width: 170px; padding: 10px 12px; }
+    .bb-header { font-size: 0.68rem; margin-bottom: 8px; }
+    .bb-tags span { font-size: 0.62rem; padding: 3px 8px; }
+    .bb-post-l, .bb-post-r { display: none; }
+    .billboard { position: relative !important; left: 0 !important; }
+    .billboard::before {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      width: 50px;
+      height: 18px;
+      background: rgba(195, 205, 235, 0.26);
+      border-radius: 50%;
+      transform: translateX(-50%);
+      box-shadow:
+        -30px -12px 0 14px rgba(195, 205, 235, 0.20),
+        30px -10px 0 12px rgba(195, 205, 235, 0.18),
+        0 -16px 0 16px rgba(195, 205, 235, 0.16),
+        -50px 0 0 6px rgba(195, 205, 235, 0.12),
+        50px 0 0 6px rgba(195, 205, 235, 0.12),
+        0 0 15px 12px rgba(180, 195, 230, 0.05);
+      z-index: -1;
+      pointer-events: none;
+      animation: cloudFloat 7s ease-in-out infinite;
+    }
+    .sh-title { font-size: 0.95rem; }
+
+    /* Beyond work */
+    .zone-beyond { gap: 20px; }
+    .bookshelf { gap: 12px; }
+    .book-display { width: 80px; }
+    .book-info { max-width: 140px; }
+    .bi-title { font-size: 0.95rem; }
+    .bi-sub { font-size: 0.6rem; }
+    .bi-desc { font-size: 0.65rem; }
+    .interest-card { width: 200px; padding: 8px 10px; }
+    .ic-icon { width: 28px; height: 28px; }
+    .ic-title { font-size: 0.75rem; }
+    .ic-desc { font-size: 0.6rem; }
+    .interest-grid { gap: 10px; }
+
+    /* Contact */
+    .zone-contact { padding-left: 15px; }
+    .ce-title { font-size: 1.4rem; margin-bottom: 12px; }
+    .ce-links { flex-direction: column; align-items: center; gap: 8px; }
+    .ce-link { padding: 8px 18px; font-size: 0.75rem; }
+    .ce-note { font-size: 0.72rem; }
+    .end-flag svg { width: 30px; height: 60px; }
+
+    /* Trees & lamps slightly smaller */
+    .tree svg { width: 35px; height: 50px; }
+    .lamp svg { width: 14px; height: 55px; }
+
+    /* Progress bar thinner */
+    .progress-bar { height: 2px; }
+  }
+</style>
