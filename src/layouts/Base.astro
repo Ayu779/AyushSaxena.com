@@ -40,7 +40,8 @@ const { title = 'Ayush Saxena | Builder, Analyst, Author', description = 'Data a
     const worldWidth = 11300;
     const viewportWidth = window.innerWidth;
     const isMobile = viewportWidth <= 768;
-    const maxScroll = isMobile ? 10560 : worldWidth - viewportWidth;
+    const contactLeft = 10600;
+    const maxScroll = isMobile ? 10560 : Math.min(worldWidth - viewportWidth, contactLeft - 100);
 
     // Sky color stops for the gradient shift
     const skyStops = [
